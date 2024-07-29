@@ -1,0 +1,19 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4CAF50;
+    padding: 10px 20px;
+    color: white;
+  }
+  
+  .header h1 {
+    margin: 0;
+  }
+  
+  .header nav a {
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
+  }
+  
