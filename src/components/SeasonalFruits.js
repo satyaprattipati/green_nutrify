@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import ProductCard from './ProductCard';
+import FeedbackPopup from './FeedbackPopup';
 import './styles/components/SeasonalFruits.css';
 
 const SeasonalFruits = () => {
@@ -9,6 +10,9 @@ const SeasonalFruits = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [seasons, setSeasons] = useState([]);
   const [selectedSeason, setSelectedSeason] = useState('');
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [feedbacks, setFeedbacks] = useState([]);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   useEffect(() => {
     const fetchProducts = axios.get('http://localhost:3001/green_nutrify/products');
@@ -73,6 +77,38 @@ const SeasonalFruits = () => {
       });
   };
 
+  const handleProductClick = (product) => {
+    setSelectedProduct(product);
+    setIsPopupOpen(false);
+    axios.get(`http://localhost:3001/green_nutrify/feedbacks/product/${product.product_id}`)
+      .then(response => {
+        setFeedbacks(response.data.data);
+      })
+      .catch(error => {
+        console.error('Error fetching feedbacks:', error);
+      });
+  };
+
+  const handleOpenFeedbackPopup = () => {
+    if (!selectedProduct) {
+      alert('Select a product first');
+      return;
+    }
+    setIsPopupOpen(true);
+  };
+
+  const handleSubmitFeedback = (feedbackData) => {
+    axios.post('http://localhost:3001/green_nutrify/feedback', feedbackData)
+      .then(response => {
+        alert('Feedback submitted successfully');
+        setFeedbacks(prevFeedbacks => [response.data.data, ...prevFeedbacks]);
+        setIsPopupOpen(false);
+      })
+      .catch(error => {
+        console.error('Error submitting feedback:', error);
+      });
+  };
+
   return (
     <section className="seasonal-fruits">
       <h2>Seasonal Fruits</h2>
@@ -109,9 +145,40 @@ const SeasonalFruits = () => {
               image: `http://localhost:3001/uploads/${product.product_image}`
             }}
             onAddToCart={handleAddToCart}
+            onClick={() => handleProductClick(product)}
           />
         ))}
       </div>
+
+      {selectedProduct && (
+        <div className="product-feedbacks">
+          <h3>
+            Feedback for {selectedProduct.product_namename}
+            <button className="add-review-button" onClick={handleOpenFeedbackPopup}>
+              Add Review
+            </button>
+
+          </h3>
+          {feedbacks.length > 0 ? (
+            <ul>
+              {feedbacks.map((feedback, index) => (
+                <li key={index}>
+                  <strong>{feedback.email}:</strong> {feedback.comments}
+                  <div>Rating: {feedback.rating}</div>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>No feedback available for this product.</p>
+          )}
+        </div>
+      )}
+      <FeedbackPopup
+        isOpen={isPopupOpen}
+        onClose={() => setIsPopupOpen(false)}
+        productId={selectedProduct?.product_id}
+        onSubmit={handleSubmitFeedback}
+      />
     </section>
   );
 };

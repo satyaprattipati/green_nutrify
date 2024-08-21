@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './styles/components/ProductCard.css';
 import UpdateProductPopup from './UpdateProductPopup';
 
-const ProductCard = ({ product, onAddToCart, onUpdateProduct, onRemoveProduct }) => {
+const ProductCard = ({ product, onAddToCart, onUpdateProduct, onRemoveProduct, onClick }) => {
   const [userId, setUserId] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
@@ -44,13 +44,8 @@ const ProductCard = ({ product, onAddToCart, onUpdateProduct, onRemoveProduct })
     setIsPopupOpen(false);
   };
 
-  if (!product || !product.name || !product.price || !product.image) {
-    console.error('ProductCard: Missing required product properties');
-    return null;
-  }
-
   return (
-    <div className="product-card">
+    <div className="product-card" onClick={() => onClick(product)}>
       <img src={product.image} alt={product.name} className="product-image" />
       <div className="product-details">
         <h3 className="product-name">{product.name}</h3>
@@ -59,10 +54,10 @@ const ProductCard = ({ product, onAddToCart, onUpdateProduct, onRemoveProduct })
         <p className="product-season">{product.season}</p>
         {userId === '1' ? (
           <>
-            <button onClick={() => setIsPopupOpen(true)} className="update-product-button">
+            <button onClick={(e) => { e.stopPropagation(); setIsPopupOpen(true); }} className="update-product-button">
               Update Product
             </button>
-            <button onClick={() => handleRemoveProduct(product)} className="remove-product-button">
+            <button onClick={(e) => { e.stopPropagation(); handleRemoveProduct(product); }} className="remove-product-button">
               Remove Product
             </button>
             <UpdateProductPopup
@@ -73,7 +68,7 @@ const ProductCard = ({ product, onAddToCart, onUpdateProduct, onRemoveProduct })
             />
           </>
         ) : (
-          <button onClick={() => onAddToCart(product)} className="add-to-cart-button">
+          <button onClick={(e) => { e.stopPropagation(); onAddToCart(product); }} className="add-to-cart-button">
             Add to Cart
           </button>
         )}
