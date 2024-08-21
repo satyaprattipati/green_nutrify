@@ -25,6 +25,7 @@ const Header = () => {
           <>
             <Link to="/">Home</Link>
             <Link to="/products">Products</Link>
+            <Link to="/cart">Cart</Link>
             <button onClick={handleLogout} className="logout-button">
               Logout
             </button>

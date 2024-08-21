@@ -1,18 +1,38 @@
 .seasonal-fruits {
-    padding: 20px;
-  }
-  
-  .seasonal-fruits .fruits-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
+  padding: 20px;
+}
 
-  .search-input {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
+.seasonal-fruits .fruits-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.seasonal-fruits label {
+  display: block;
+  margin-bottom: 16px;
+}
+
+.seasonal-fruits select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #fff;
+  font-size: 16px;
+}
+
+.seasonal-fruits select option {
+  padding: 8px;
+}

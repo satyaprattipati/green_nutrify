@@ -19,11 +19,12 @@ const Login = () => {
         Password: password,
       });
 
-      const { user_id, user_name, token } = response.data;
+      const { user_id } = response.data.results[0];
+      const { token } = response.data;
 
       // Store user information and token in localStorage
       localStorage.setItem('user_id', user_id);
-      localStorage.setItem('user_name', user_name);
+      // localStorage.setItem('user_name', user_name);
       localStorage.setItem('token', token);
 
       console.log('Login successful:', response.data);

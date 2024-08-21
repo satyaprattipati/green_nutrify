@@ -1,7 +1,54 @@
-import React from 'react';
-import './styles/components/ProductCard.css'; // Ensure you have CSS for styling
+import React, { useEffect, useState } from 'react';
+import './styles/components/ProductCard.css';
+import UpdateProductPopup from './UpdateProductPopup';
 
-const ProductCard = ({ product, onAddToCart }) => {
+const ProductCard = ({ product, onAddToCart, onUpdateProduct, onRemoveProduct }) => {
+  const [userId, setUserId] = useState(null);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  useEffect(() => {
+    const storedUserId = localStorage.getItem('user_id');
+    if (storedUserId) {
+      setUserId(storedUserId);
+    }
+  }, []);
+
+  const deleteProduct = async (productId) => {
+    try {
+      const response = await fetch(`http://localhost:3001/green_nutrify/products/${productId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to delete product');
+      }
+
+      alert('Product deleted successfully');
+      onRemoveProduct(productId);
+    } catch (error) {
+      console.error('Error deleting product:', error);
+    }
+  };
+
+  const handleRemoveProduct = (product) => {
+    if (window.confirm('Are you sure you want to remove this product?')) {
+      deleteProduct(product.id);
+    }
+  };
+
+  const handleUpdateProduct = (updatedProduct) => {
+    onUpdateProduct(updatedProduct);
+    setIsPopupOpen(false);
+  };
+
+  if (!product || !product.name || !product.price || !product.image) {
+    console.error('ProductCard: Missing required product properties');
+    return null;
+  }
+
   return (
     <div className="product-card">
       <img src={product.image} alt={product.name} className="product-image" />
@@ -9,9 +56,27 @@ const ProductCard = ({ product, onAddToCart }) => {
         <h3 className="product-name">{product.name}</h3>
         <p className="product-description">{product.description}</p>
         <p className="product-price">${product.price.toFixed(2)}</p>
-        <button onClick={() => onAddToCart(product)} className="add-to-cart-button">
-          Add to Cart
-        </button>
+        <p className="product-season">{product.season}</p>
+        {userId === '1' ? (
+          <>
+            <button onClick={() => setIsPopupOpen(true)} className="update-product-button">
+              Update Product
+            </button>
+            <button onClick={() => handleRemoveProduct(product)} className="remove-product-button">
+              Remove Product
+            </button>
+            <UpdateProductPopup
+              isOpen={isPopupOpen}
+              onClose={() => setIsPopupOpen(false)}
+              product={product}
+              onUpdateProduct={handleUpdateProduct}
+            />
+          </>
+        ) : (
+          <button onClick={() => onAddToCart(product)} className="add-to-cart-button">
+            Add to Cart
+          </button>
+        )}
       </div>
     </div>
   );
