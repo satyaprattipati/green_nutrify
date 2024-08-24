@@ -52,10 +52,12 @@ const Signup = () => {
     }
   };
 
-  return (
-    <div className="signup-container">
-      <h2>Sign Up</h2>
-      <form onSubmit={handleSubmit}>
+    return (
+      <div className="signup-page">
+        <div className="signup-form-container">
+          <div className="signup-container">
+            <h2>Sign Up</h2>
+            <form onSubmit={handleSubmit}>
         <label>
           Username:
           <input
@@ -135,8 +137,10 @@ const Signup = () => {
         </button>
       </form>
       <p className="login-link">
-        Already have an account? <a href="/login">Login here</a>
-      </p>
+            Already have an account? <a href="/login">Login here</a>
+          </p>
+        </div>
+      </div>
     </div>
   );
 };

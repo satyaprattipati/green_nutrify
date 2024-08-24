@@ -16,6 +16,7 @@ const Header = () => {
   };
 
   const isLoggedIn = localStorage.getItem('token') !== null;
+  const userId = localStorage.getItem('user_id');
 
   return (
     <header className="header">
@@ -25,7 +26,7 @@ const Header = () => {
           <>
             <Link to="/">Home</Link>
             <Link to="/products">Products</Link>
-            <Link to="/cart">Cart</Link>
+            {userId !== '1' && <Link to="/cart">Cart</Link>}
             <button onClick={handleLogout} className="logout-button">
               Logout
             </button>

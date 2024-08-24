@@ -1,30 +1,28 @@
 .login-page {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   height: 100vh;
-  overflow: hidden;
-}
-
-.login-image {
-  background-image: url('./nutrify.jpg');
+  background-image: url('./organic-produce-01-sh-iwb-220810_1660138683424_hpMain_16x9_992.jpg');
   background-size: cover;
   background-position: center;
-  height: 50%;
 }
 
 .login-form-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 40%;
-  background-color: #fff;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 .login-container {
   width: 100%;
   max-width: 400px;
   padding: 20px;
-  border: 1px solid #ddd;
+  background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
@@ -75,4 +73,19 @@
 .success-message {
   color: green;
   margin-bottom: 10px;
+}
+
+.signup-link {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.signup-link a {
+  color: #4CAF50;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
 }

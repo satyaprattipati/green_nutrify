@@ -1,78 +1,100 @@
+.signup-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url('./organic-produce-01-sh-iwb-220810_1660138683424_hpMain_16x9_992.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.signup-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+
 .signup-container {
-    width: 80%;
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .signup-container h2 {
-    margin-bottom: 20px;
-    color: #4CAF50;
-  }
-  
-  form {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  
-  form label {
-    display: flex;
-    flex-direction: column;
-    width: calc(50% - 10px);
-    margin-right: 10px;
-    margin-bottom: 20px;
-  }
-  
-  form label:nth-child(2n) {
-    margin-right: 0;
-  }
-  
-  form input {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-sizing: border-box;
-  }
-  
-  form button {
-    width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  form button:hover {
-    background-color: #45a049;
-  }
-  
-  .error-message {
-    color: red;
-    margin-top: 10px;
-  }
-  
-  .success-message {
-    color: green;
-    margin-top: 10px;
-  }
-  .login-link {
-    margin-top: 20px;
-    text-align: center;
-  }
-  
-  .login-link a {
-    color: #4CAF50;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  .login-link a:hover {
-    text-decoration: underline;
-  }
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.signup-container h2 {
+  margin-bottom: 20px;
+  color: #4CAF50;
+}
+
+.signup-container form {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.signup-container form label {
+  display: flex;
+  flex-direction: column;
+  width: calc(50% - 10px);
+  margin-right: 10px;
+  margin-bottom: 20px;
+}
+
+.signup-container form label:nth-child(2n) {
+  margin-right: 0;
+}
+
+.signup-container form input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.signup-container form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.signup-container form button:hover {
+  background-color: #45a049;
+}
+
+/* Error and success message styling */
+.signup-container .error-message {
+  color: red;
+  margin-top: 10px;
+}
+
+.signup-container .success-message {
+  color: green;
+  margin-top: 10px;
+}
+
+.signup-container .login-link {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.signup-container .login-link a {
+  color: #4CAF50;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.signup-container .login-link a:hover {
+  text-decoration: underline;
+}
