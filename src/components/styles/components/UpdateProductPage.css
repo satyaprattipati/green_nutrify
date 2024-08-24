@@ -1,0 +1,66 @@
+.update-product-page {
+  width: 500px;
+  padding: 50px;
+  max-width: 600px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.update-product-page h2 {
+  font-size: 1.8em;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.update-product-page form {
+  display: flex;
+  flex-direction: column;
+}
+
+.update-product-page label {
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+.update-product-page input,
+.update-product-page textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+.update-product-page textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.update-product-page button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1em;
+  margin-top: 10px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.update-product-page button:hover {
+  background-color: #45a049;
+  transform: scale(1.02);
+}
+
+.update-product-page .cancel-button {
+  background-color: #dc3545;
+  margin-top: 10px;
+}
+
+.update-product-page .cancel-button:hover {
+  background-color: #c82333;
+}

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './styles/components/ProductCard.css';
-import UpdateProductPopup from './UpdateProductPopup';
 
 const ProductCard = ({ product, onAddToCart, onUpdateProduct, onRemoveProduct, onClick }) => {
   const [userId, setUserId] = useState(null);
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const storedUserId = localStorage.getItem('user_id');
@@ -39,9 +39,8 @@ const ProductCard = ({ product, onAddToCart, onUpdateProduct, onRemoveProduct, o
     }
   };
 
-  const handleUpdateProduct = (updatedProduct) => {
-    onUpdateProduct(updatedProduct);
-    setIsPopupOpen(false);
+  const handleUpdateProduct = () => {
+    navigate(`/update-product/${product.id}`);
   };
 
   return (
@@ -54,18 +53,12 @@ const ProductCard = ({ product, onAddToCart, onUpdateProduct, onRemoveProduct, o
         <p className="product-season">{product.season}</p>
         {userId === '1' ? (
           <>
-            <button onClick={(e) => { e.stopPropagation(); setIsPopupOpen(true); }} className="update-product-button">
+            <button onClick={(e) => { e.stopPropagation(); handleUpdateProduct(); }} className="update-product-button">
               Update Product
             </button>
             <button onClick={(e) => { e.stopPropagation(); handleRemoveProduct(product); }} className="remove-product-button">
               Remove Product
             </button>
-            <UpdateProductPopup
-              isOpen={isPopupOpen}
-              onClose={() => setIsPopupOpen(false)}
-              product={product}
-              onUpdateProduct={handleUpdateProduct}
-            />
           </>
         ) : (
           <button onClick={(e) => { e.stopPropagation(); onAddToCart(product); }} className="add-to-cart-button">
