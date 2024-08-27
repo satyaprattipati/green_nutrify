@@ -56,6 +56,7 @@ const SeasonalFruits = () => {
   };
 
   const handleAddToCart = (product) => {
+    console.log(product)
     const userId = localStorage.getItem('user_id');
     if (!userId) {
       console.error('User ID not found in localStorage');
@@ -71,9 +72,10 @@ const SeasonalFruits = () => {
     axios.post('http://localhost:3001/green_nutrify/cart', cartItem)
       .then(response => {
         console.log('Product added to cart:', response.data);
+        alert(`${product.name} has been added to your cart.`);
       })
       .catch(error => {
-        console.error('Error adding product to cart:', error);
+        alert(`${product.name} is already in your cart.`);
       });
   };
 
